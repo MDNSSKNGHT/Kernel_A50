@@ -47,6 +47,11 @@ __init int mount_sar_ramdisk(char* name) {
 		goto clean_nobuf;
 	}
 
+	if (header.ramdisk_size == 0) {
+		pr_err("SAR_RD: Ramdisk size is null!");
+		goto clean_nobuf;
+	}
+
 	buf = kmalloc(header.ramdisk_size, GFP_KERNEL);
 
 	if (!buf) {
